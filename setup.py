@@ -7,7 +7,8 @@ if __name__ == "__main__":
         install_requires=[
             "dagster",
             "dagster-cloud",
-            "dagster-dbt"
+            "dagster-dbt",
+            "dbt-duckdb"
         ],
         extras_require={"dev": ["dagit", "pytest"]},
     )
