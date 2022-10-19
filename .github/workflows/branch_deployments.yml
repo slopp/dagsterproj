@@ -129,8 +129,7 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Notify build failure
-        if: ${{ github.event.type == 'PullRequestEvent'}}
-        if: ${{ failure() }}
+        if: ${{ failure() && github.event.type == 'PullRequestEvent' }}
         uses: ./action-repo/actions/utils/notify
         with:
           organization_id: ${{ secrets.ORGANIZATION_ID }}
