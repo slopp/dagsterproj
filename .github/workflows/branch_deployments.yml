@@ -71,6 +71,7 @@ jobs:
         shell: bash
 
       - name: Notify build start
+        if: ${{ github.event.type == 'PullRequestEvent'}}
         uses: ./action-repo/actions/utils/notify
         with:
           organization_id: ${{ secrets.ORGANIZATION_ID  }}
@@ -116,6 +117,7 @@ jobs:
           DAGSTER_CLOUD_API_TOKEN: ${{ secrets.DAGSTER_CLOUD_API_TOKEN }}
 
       - name: Notify build success
+        if: ${{ github.event.type == 'PullRequestEvent'}}
         uses: ./action-repo/actions/utils/notify
         with:
           organization_id: ${{ secrets.ORGANIZATION_ID }}
@@ -127,6 +129,7 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Notify build failure
+        if: ${{ github.event.type == 'PullRequestEvent'}}
         if: ${{ failure() }}
         uses: ./action-repo/actions/utils/notify
         with:
