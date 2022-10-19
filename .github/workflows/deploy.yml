@@ -106,4 +106,4 @@ jobs:
           image_tag: prod-${{ matrix.location.name }}-${{ github.sha }}
           registry: ${{ env.REGISTRY_URL }}
         env:
-          DAGSTER_CLOUD_API_TOKEN: ${{ secrets.DAGSTER_API_TOKEN }}
+          DAGSTER_CLOUD_API_TOKEN: ${{ secrets.DAGSTER_CLOUD_API_TOKEN }}
