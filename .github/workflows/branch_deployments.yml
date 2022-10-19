@@ -108,8 +108,8 @@ jobs:
         id: deploy
         with:
           organization_id: ${{ secrets.ORGANIZATION_ID }}
-          pr: "${{ github.event.number }}"
-          pr_status: "${{ github.event.pull_request.merged && 'merged' || github.event.pull_request.state }}"
+          pr: "${{ github.event.number || github.event.inputs.dbtref }}"
+          pr_status: "${{ github.event.pull_request.merged && 'merged' || github.event.pull_request.state || github.event.inputs.dbtref }}"
           location: ${{ toJson(matrix.location) }}
           image_tag: prod-${{ matrix.location.name }}-${{ github.sha }}
           registry: ${{ env.REGISTRY_URL }}
