@@ -56,7 +56,6 @@ jobs:
         uses: actions/checkout@v3
         with:
           repository: dagster-io/dagster-cloud-action
-          ref: github.head_ref
           path: ./action-repo/
 
       - name: Get serverless organization info
