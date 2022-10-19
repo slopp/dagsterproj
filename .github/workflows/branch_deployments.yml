@@ -2,7 +2,7 @@ name: Serverless Branch Deployments
 on:
   workflow_dispatch:
     inputs:
-      ref:
+      dbtref:
         description: 'ref to checkout from upstream dbt project'
         required: true
         default: 'main'
@@ -48,7 +48,7 @@ jobs:
         uses: actions/checkout@v3
         with:
           repository: slopp/dbtproj
-          ref: ${{ github.event.inputs.ref }}
+          ref: ${{ github.event.inputs.dbtref }}
           path: ./dbtproj
 
       # the remainder modified from https://github.com/dagster-io/dagster-cloud-action/blob/main/actions/serverless_branch_deploy/action.yml
