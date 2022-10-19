@@ -1,5 +1,6 @@
 name: Serverless Prod Deployment
 on:
+  repository_dispatch:
   push:
     branches:
       - "main"

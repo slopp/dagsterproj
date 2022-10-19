@@ -2,7 +2,7 @@ from dagster import load_assets_from_package_module, repository, with_resources
 from dagster_dbt import load_assets_from_dbt_project, dbt_cli_resource
 import os
 
-if os.environ["DAGSTER_DEPLOYMENT"] == "local":
+if os.getenv("DAGSTER_DEPLOYMENT", "prod") == "local":
     DBT_PROFILES_DIR = "../dbtproj"
     DBT_PROJECT_DIR = "../dbtproj"
 else:
