@@ -49,12 +49,14 @@ jobs:
         with:
           repository: slopp/dbtproj
           ref: ${{ github.event.inputs.ref }}
+          path: ./dbtproj
 
       # the remainder modified from https://github.com/dagster-io/dagster-cloud-action/blob/main/actions/serverless_branch_deploy/action.yml
       - name: Checkout action repo
         uses: actions/checkout@v3
         with:
           repository: dagster-io/dagster-cloud-action
+          ref: github.head_ref
           path: ./action-repo/
 
       - name: Get serverless organization info
@@ -75,7 +77,7 @@ jobs:
           organization_id: ${{ secrets.ORGANIZATION_ID  }}
           action: "pending"
           pr: "${{ github.event.number }}"
-          location: "prod"
+          location:  ${{ toJSON(matrix.location) }}
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
@@ -90,6 +92,7 @@ jobs:
           target_directory: ${{ matrix.location.directory }}
 
       - name: Build and push Docker image
+        if: ${{ github.event.pull_request.state != 'closed' }}
         uses: docker/build-push-action@v3
         with:
           context: ${{ matrix.location.directory }}
