@@ -6,6 +6,8 @@ if __name__ == "__main__":
         packages=find_packages(exclude=["dagsterproj_tests"]),
         install_requires=[
             "dagster",
+            "dagster-cloud",
+            "dagster-dbt"
         ],
         extras_require={"dev": ["dagit", "pytest"]},
     )
