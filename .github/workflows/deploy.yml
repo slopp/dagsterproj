@@ -89,8 +89,7 @@ jobs:
 
       - name: Copy user code template file
         uses: ./action-repo/actions/utils/copy_template
-        with:
-        ${{ toJson(matrix.location) }}
+        with: 
           target_directory: ${{ matrix.location.directory }}
 
       - name: Build and push Docker image
